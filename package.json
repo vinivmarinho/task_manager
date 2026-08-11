@@ -5,7 +5,8 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "createTable": "tsx src/scripts/createTableUsers.ts"
+    "createTableUsers": "tsx src/scripts/createTableUsers.ts",
+    "createTableTasks": "tsx src/scripts/createTableTasks"
   },
   "license": "MIT",
   "devDependencies": {
