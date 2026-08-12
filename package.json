@@ -8,7 +8,8 @@
     "createTableUsers": "tsx src/scripts/createTableUsers.ts",
     "createTableTasks": "tsx src/scripts/createTableTasks",
     "seedUsers": "tsx src/scripts/seedUsers",
-    "seedRandomUsers": "tsx src/scripts/seedRandomUsers"
+    "seedRandomUsers": "tsx src/scripts/seedRandomUsers",
+    "seedRandomTasks": "tsx src/scripts/seedRandomTasks"
   },
   "license": "MIT",
   "devDependencies": {
