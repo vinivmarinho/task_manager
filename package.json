@@ -7,10 +7,12 @@
     "start": "node dist/server.js",
     "createTableUsers": "tsx src/scripts/createTableUsers.ts",
     "createTableTasks": "tsx src/scripts/createTableTasks",
-    "seedUsers": "tsx src/scripts/seedUsers"
+    "seedUsers": "tsx src/scripts/seedUsers",
+    "seedRandomUsers": "tsx src/scripts/seedRandomUsers"
   },
   "license": "MIT",
   "devDependencies": {
+    "@faker-js/faker": "^10.5.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^26.1.2",
