@@ -6,7 +6,8 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "createTableUsers": "tsx src/scripts/createTableUsers.ts",
-    "createTableTasks": "tsx src/scripts/createTableTasks"
+    "createTableTasks": "tsx src/scripts/createTableTasks",
+    "seedUsers": "tsx src/scripts/seedUsers"
   },
   "license": "MIT",
   "devDependencies": {
