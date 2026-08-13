@@ -1,7 +1,7 @@
 import { type Request, type Response } from "express";
 import pool from "../config/database";
 
-// Fazer o CRUD
+
 async function createUser(req: Request, res: Response) {
     try {
         const { name, age, email } = req.body
@@ -36,16 +36,13 @@ async function deleteUser(req: Request, res: Response) {
             DELETE FROM users WHERE user_id = $1`, [id]
         ) 
         res.status(200).json({
-            // TODO: Buscar nome do user através dos parâmetros
             message: `Usuário ${user.user_name} deletado`
         });
     } catch(error) {
         res.status(500).json({
             message: `Não foi possível deletar usuário , erro: ${error}`
         })
-    } finally {
-        await pool.end()
-    }
+    } 
 }
 
 async function showAllUsers(req: Request, res: Response) {
