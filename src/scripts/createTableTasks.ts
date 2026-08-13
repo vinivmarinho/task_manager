@@ -9,7 +9,7 @@ async function createTableTasks() {
         task_description text,
         task_priority VARCHAR(20) CHECK(task_priority IN('Alta', 'Média', 'Baixa')),
         user_id INT NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES users(user_id)
+        FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
         )
         `);
         console.log('Tabela tasks criada com sucesso')
