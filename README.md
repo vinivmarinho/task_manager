@@ -73,7 +73,7 @@ Os scripts de seed utilizam Faker.js para gerar usuários e tarefas fictícios.
 
 **Vinícius Marinho**
 
-Desenvolvedor em formação com foco em desenvolvimento Backend e Full Stack.
+Desenvolvedor em formação com foco em desenvolvimento Full Stack.
 
 Tecnologias de interesse:
 
