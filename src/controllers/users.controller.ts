@@ -5,6 +5,7 @@ import pool from "../config/database";
 async function createUser(req: Request, res: Response) {
     try {
         const { name, age, email } = req.body
+
         const user = {
             name,
             age, 
