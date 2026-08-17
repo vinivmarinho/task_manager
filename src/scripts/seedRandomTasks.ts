@@ -2,6 +2,7 @@ import pool from "../config/database";
 import { faker } from "@faker-js/faker";
 
 async function seedRandomTasks() {
+
     try {
         const result = await pool.query("SELECT user_id FROM users");
         const users = result.rows;

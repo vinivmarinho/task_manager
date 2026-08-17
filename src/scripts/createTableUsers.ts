@@ -7,7 +7,8 @@ async function createTableUsers() {
             user_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
             user_name VARCHAR(80) NOT NULL, 
             user_age INT, 
-            user_email VARCHAR(80) UNIQUE NOT NULL
+            user_email VARCHAR(80) UNIQUE NOT NULL,
+            user_password VARCHAR(255) NOT NULL,
             );
         `);
         
