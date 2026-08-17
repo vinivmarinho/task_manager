@@ -1,6 +1,8 @@
 import { type Request, type Response } from "express";
 import pool from "../config/database";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 async function createUser(req: Request, res: Response) {
     try {
@@ -86,9 +88,19 @@ async function updateUser(req: Request, res: Response) {
 
 async function login(req: Request, res: Response) {
     try {
+        // - Procura no banco o usuário com o email igual ao da requisição do body, salva o resultado e guarda usuário encontrado em "user"
+        // - Usando bcrypt.compare, verifico se a senha enviada pela requisição do body é a mesma que o hash da senha armazenada no usuário encontrado
+        // JWT usa a chave secreta para assinar o token e garantir a autenticidade
         const { email, password } = req.body;
         const result = await pool.query(`SELECT * FROM users WHERE user_email = $1`, [email]);
         const user = result.rows[0];
+
+        if (!user) {
+            return res.status(401).json({
+                message: "Email ou senha inválidos"
+            })
+        }
+
         const passwordIsValid = await bcrypt.compare(password, user.user_password)
 
         if (!passwordIsValid) {
@@ -97,8 +109,20 @@ async function login(req: Request, res: Response) {
             })
         }
         
+        const token = jwt.sign(
+            {
+                user_id: user.user_id,
+                email: user.user_email
+            },
+            process.env.JWT_SECRET!,
+            {
+                expiresIn: "1h"
+            }
+        );
+
         return res.status(200).json({
-            message: "Login realizado com sucesso!"
+            message: "Login realizado com sucesso!",
+            token
         })
     } catch(error) {
         res.status(500).json({
@@ -106,6 +130,7 @@ async function login(req: Request, res: Response) {
         })
     }
 }
+
 export { createUser, deleteUser, showAllUsers, updateUser, login};
 
 
