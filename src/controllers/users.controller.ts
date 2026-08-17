@@ -1,6 +1,6 @@
 import { type Request, type Response } from "express";
 import pool from "../config/database";
-
+import bcrypt from "bcrypt";
 
 async function createUser(req: Request, res: Response) {
     try {
@@ -84,6 +84,28 @@ async function updateUser(req: Request, res: Response) {
     } 
 };
 
-export { createUser, deleteUser, showAllUsers, updateUser};
+async function login(req: Request, res: Response) {
+    try {
+        const { email, password } = req.body;
+        const result = await pool.query(`SELECT * FROM users WHERE user_email = $1`, [email]);
+        const user = result.rows[0];
+        const passwordIsValid = await bcrypt.compare(password, user.user_password)
+
+        if (!passwordIsValid) {
+            return res.status(401).json({
+                message: "Email ou senha inválidos"
+            })
+        }
+        
+        return res.status(200).json({
+            message: "Login realizado com sucesso!"
+        })
+    } catch(error) {
+        res.status(500).json({
+            message: `Não foi possível realizar login. Erro: ${error}` 
+        })
+    }
+}
+export { createUser, deleteUser, showAllUsers, updateUser, login};
 
 
